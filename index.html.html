@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Material Inventory Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5 mb-4">Raw Material Inventory Management</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="item-tab" data-toggle="tab" href="#item" role="tab">Item Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="inward-tab" data-toggle="tab" href="#inward" role="tab">Item Received</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="outward-tab" data-toggle="tab" href="#outward" role="tab">Item Issue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="report-tab" data-toggle="tab" href="#report" role="tab">Item Report</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="item" role="tabpanel">
+                <form id="itemForm" class="mt-3">
+                    <div class="form-group">
+                        <label for="itemId">Item ID:</label>
+                        <input type="text" class="form-control" id="itemId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemName">Item Name:</label>
+                        <input type="text" class="form-control" id="itemName" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="openingStock">Opening Stock:</label>
+                        <input type="number" class="form-control" id="openingStock" step="0.001" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="uom">Unit of Measurement:</label>
+                        <input type="text" class="form-control" id="uom" maxlength="10" required disabled>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveBtn" disabled>Save</button>
+                    <button type="button" class="btn btn-warning" id="changeBtn" disabled>Change</button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="inward" role="tabpanel">
+                <form id="inwardForm" class="mt-3">
+                    <div class="form-group">
+                        <label for="receiptNo">Receipt No:</label>
+                        <input type="text" class="form-control" id="receiptNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="receiptDate">Receipt Date:</label>
+                        <input type="date" class="form-control" id="receiptDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inwardItemId">Item ID:</label>
+                        <input type="text" class="form-control" id="inwardItemId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inwardQuantity">Quantity:</label>
+                        <input type="number" class="form-control" id="inwardQuantity" step="0.001" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveInwardBtn">Save</button>
+                    <button type="button" class="btn btn-secondary" id="resetInwardBtn">Reset</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="outward" role="tabpanel">
+                <form id="outwardForm" class="mt-3">
+                    <div class="form-group">
+                        <label for="issueNo">Issue No:</label>
+                        <input type="text" class="form-control" id="issueNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueDate">Issue Date:</label>
+                        <input type="date" class="form-control" id="issueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="outwardItemId">Item ID:</label>
+                        <input type="text" class="form-control" id="outwardItemId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="outwardQuantity">Quantity:</label>
+                        <input type="number" class="form-control" id="outwardQuantity" step="0.001" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveOutwardBtn">Save</button>
+                    <button type="button" class="btn btn-secondary" id="resetOutwardBtn">Reset</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="report" role="tabpanel">
+                <div class="mt-3">
+                    <h4>Item Report</h4>
+                    <table class="table table-bordered" id="itemReportTable">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Item Name</th>
+                                <th>Current Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Report data will be populated here -->
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary" id="generateReportBtn">Generate Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="inventory.js"></script>
+</body>
+</html>
